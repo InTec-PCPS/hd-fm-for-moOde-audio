@@ -15,10 +15,7 @@ Adding stations to moOdeaudio uses a URI that tunes the frequency and multicast 
 
 ## Notes to Self
 
-- Remember to enable and start services.
-
+- Remember to enable services (sudo systemctl enable ###.service) in /etc/systemd/system.
 - runtime and build dependencies: git build-essential cmake autoconf libtool libao-dev libfftw3-dev librtlsdr-dev meson libsndfile1-dev libliquid-dev python3-flask icecast2
-
 - Remember to set icecast passwords where needed.
-
 - nrsc5 and redsea need to be compiled (see respective github repos).

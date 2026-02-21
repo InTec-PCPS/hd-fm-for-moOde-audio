@@ -9,8 +9,9 @@ A Frankenstein's monster to add over-the-air US FM and multicast FM (HD) station
 - The signals are encoded by ffmpeg/libmp3lame and sent to Icecast.
 - Icecast sets up a local stream that is interpreted by moOdeaudio as a webradio station.
 
-Adding stations to moOdeaudio uses a URI that tunes the frequency and multicast channel: http://127.0.0.1:8080/tune?freq=93.3&prog=0
-http://127.0.0.1:8081/fmtune?freq=102.3
+Adding stations to moOdeaudio uses a URI that tunes the frequency and multicast channel:
+- http://127.0.0.1:8080/tune?freq=93.3&prog=0 (for HD. prog 0 is HD-1)
+- http://127.0.0.1:8081/fmtune?freq=102.3 (for FM.)
 
 Note to self: remember to enable and start services...and to set icecast passwords where needed. Python needs flask. Icecast needs to be installed. nrsc5 and redsea need to be compiled.
 

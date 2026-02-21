@@ -1,4 +1,5 @@
 # permissions: 644 root root
+# location: /etc/systemd/system
 
 [Unit]
 Conflicts=fmradio@active.service
@@ -10,7 +11,7 @@ Requires=icecast2.service
 [Service]
 Type=simple
 EnvironmentFile=/etc/default/hdradio
-ExecStartPre=/bin/bash -c 'for i in {1..10}; do rtl_test -t >/dev/null 2>&1 && exit 0; sleep 1; done; exit 0'
+ExecStartPre=/bin/bash -c 'for i in {1..10}; do rtl_test -t >/dev/null 2>&1 && exit 0; sleep 1; done; exit 1'
 ExecStart=/usr/local/bin/hd-run
 KillSignal=SIGINT
 TimeoutStopSec=5

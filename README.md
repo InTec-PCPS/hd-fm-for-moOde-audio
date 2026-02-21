@@ -4,10 +4,12 @@ Personal project only!
 
 A Frankenstein's monster to add over-the-air US FM and multicast FM (HD) stations to moOde audio's Radio list using an RTL-SDR dongle.
 
+Works with mo0de 10.
+
 - For HD-Radio, it uses nrsc5 by theori-io (https://github.com/theori-io/nrsc5) to decode signals from an RTL-SDR dongle attached to the Raspberry Pi. Artist/Title are scraped from the nrsc5 stderr and sent to Icecast as metadata.
-- For standard FM radio, no decoder is needed, but RDS info is picked up using redsea by windytan (https://github.com/windytan/redsea).
-- The signals are encoded by ffmpeg/libmp3lame and sent to Icecast.
-- Icecast sets up a local stream that is interpreted by moOdeaudio as a webradio station.
+- For standard FM radio, it uses rtl-sdr tools with RDS info picked up by redsea by windytan (https://github.com/windytan/redsea).
+- The signals are re-encoded by ffmpeg/libmp3lame and sent to Icecast.
+- Icecast sets up a local stream that is interpreted by moOde audio as a webradio station.
 
 Adding stations to moOdeaudio uses a URI that tunes the frequency and multicast channel:
 - http://127.0.0.1:8080/tune?freq=93.3&prog=0 (for HD. prog 0 is HD-1)

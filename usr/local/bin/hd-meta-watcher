@@ -38,13 +38,13 @@ emit_if_ready() {
   a="$(printf '%s' "${artist:-}" | sanitize)"
   t="$(printf '%s' "${title:-}"  | sanitize)"
   if [[ -n "$a" && -n "$t" ]]; then
-    if [[ -n "$LABEL" ]]; then
-      now="${LABEL}: ${a} - ${t}"
-    else
-      now="${a} - ${t}"
-    fi
-    push_title "$now"
-    unset artist title
+#    if [[ -n "$LABEL" ]]; then
+#    now="${LABEL}: ${a} - ${t}"
+#    else
+     now="${a} - ${t}"
+#    fi
+     push_title "$now"
+     unset artist title
   fi
 }
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # permissions 755 root root
+# location: /usr/local/bin
 
 set -euo pipefail
 
@@ -9,9 +10,9 @@ PROG="${PROG:-0}"
 LABEL="HD$(( PROG + 1 ))"
 ICE_HOST="127.0.0.1:8000"
 MOUNT="/hd.mp3"
-SRC_PASS="#####"
+SRC_PASS="XXXXXXX"
 ADMIN_USER="admin"
-ADMIN_PASS="#####"
+ADMIN_PASS="XXXXXXX"
 
 META_FIFO="/run/nrsc5.meta"
 rm -f "$META_FIFO" || true
@@ -20,9 +21,9 @@ mkfifo -m 600 "$META_FIFO"
 /usr/local/bin/hd-meta-watcher "http://${ICE_HOST}" "$MOUNT" "$ADMIN_USER" "$ADMIN_PASS" "$LABEL" <"$META_FIFO" & watcher_pid=$!
 
 nrsc5 "$FREQ" "$PROG" -o - 2> >(tee "$META_FIFO" /var/log/nrsc5.log >&2) \
-| ffmpeg -nostats -loglevel error -re -i - \
+| ffmpeg -nostats -loglevel error -i - \
     -vn -ac 2 -ar 44100 \
-    -c:a libmp3lame -b:a 160k -compression_level 2 -deadline realtime \
+    -c:a libmp3lame -b:a 160k -compression_level 2 \
     -af aresample=async=1:min_hard_comp=0.1:first_pts=0 \
     -ice_name "Local HD Radio" \
     -ice_description "nrsc5 ${FREQ} ${LABEL}" \

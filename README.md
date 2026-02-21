@@ -16,5 +16,7 @@ Adding stations to moOdeaudio uses a URI that tunes the frequency and multicast 
 Note to self: remember to enable and start services...and to set icecast passwords where needed. Python needs flask. Icecast needs to be installed. nrsc5 and redsea need to be compiled.
 
 nrsc5 build deps: git build-essential cmake autoconf libtool libao-dev libfftw3-dev librtlsdr-dev
+
 redsea build deps: git build-essential meson libsndfile1-dev libliquid-dev
+
 redsea runtime deps: libiconv libsndfile liquid-dsp nlohmann-json

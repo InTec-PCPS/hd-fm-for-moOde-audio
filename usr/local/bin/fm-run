@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# permissions 755 root root
+
+set -euo pipefail
+
+# Inputs (env or defaults)
+FREQ="${FREQ:-102.3}"           # MHz
+ICE_HOST="127.0.0.1:8000"
+MOUNT="/fm.mp3"
+SRC_PASS="ndame1"
+
+# Optional: RDS to metadata (requires redsea). Comment out if not using.
+USE_RDS="${USE_RDS:-1}"
+
+# FIFO for RDS/meta parsing (optional)
+META_FIFO="/run/fm.meta"
+rm -f "$META_FIFO" || true
+mkfifo -m 600 "$META_FIFO" || true
+
+# Start RDS watcher if enabled
+if [[ "${USE_RDS}" = "1" ]]; then
+  /usr/local/bin/fm-meta-watcher "http://${ICE_HOST}" "$MOUNT" "admin" "${SRC_PASS}" <"$META_FIFO" & watcher_pid=$!
+fi
+
+# Wait a moment for Icecast after boot
+for i in {1..15}; do
+  curl -sS --max-time 1 "http://${ICE_HOST}/" >/dev/null && break
+  sleep 1
+done
+
+# Analog FM demod:
+rx_fm -M wbfm -f "${FREQ}M" -s 170k -o 4 -A fast  -r 48000 -g 30 -l 0 -E deemp 2> >(tee "$META_FIFO" >&2) \
+| ffmpeg -nostats -loglevel error -re -f s16le -ar 48000 -ac 1 -i - \
+    -ac 2 -ar 44100 \
+    -c:a libmp3lame -b:a 128k \
+    -content_type audio/mpeg \
+    -ice_name "Local FM ${FREQ}" \
+    -ice_description "rtl_fm ${FREQ} MHz" \
+    -ice_genre "Radio" \
+    -f mp3 "icecast://source:${SRC_PASS}@${ICE_HOST}${MOUNT}"
+
+# Cleanup
+[[ "${USE_RDS}" = "1" ]] && { kill "$watcher_pid" 2>/dev/null || true; }
+rm -f "$META_FIFO" || true

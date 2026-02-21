@@ -1,0 +1,10 @@
+# /usr/local/bin/fm-rds-sidecar
+#!/usr/bin/env bash
+
+# permissions 644 root root
+
+set -euo pipefail
+FREQ="${FREQ:-102.3}"
+# raw MPX for redsea
+rtl_fm -M fm -f "${FREQ}M" -s 171000 -l 0 -g 30 2>/dev/null \
+| redsea -e -r 171000

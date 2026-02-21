@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# fm-meta-watcher BASE MOUNT USER PASS
+# Reads redsea text on stdin and pushes ICY StreamTitle to Icecast.
+
+# permissions 755 root root
+
+set -euo pipefail
+BASE="$1"; MOUNT="$2"; USER="$3"; PASS="$4"
+
+last=""; last_ts=0
+sanitize() { sed 's/[[:cntrl:]]//g;s/  \+/\ /g' | awk '{print substr($0,1,120)}'; }
+
+push_title() {
+  local now="$1" ts=$(date +%s)
+  [[ "$now" == "$last" ]] && return 0
+  [[ $((ts - last_ts)) -lt 2 ]] && return 0
+  curl -sS --user "${USER}:${PASS}" \
+    --get "${BASE}/admin/metadata" \
+    --data-urlencode "mode=updinfo" \
+    --data-urlencode "mount=${MOUNT}" \
+    --data-urlencode "charset=UTF-8" \
+    --data-urlencode "song=${now}" >/dev/null || true
+  last="$now"; last_ts="$ts"
+}
+
+title=""; artist=""; rt=""
+emit() {
+  local a t now
+  a="$(printf '%s' "${artist:-}" | sanitize)"
+  t="$(printf '%s' "${title:-}"  | sanitize)"
+  if [[ -n "$a" && -n "$t" ]]; then
+    now="${a} - ${t}"
+  elif [[ -n "${rt:-}" ]]; then
+    now="$(printf '%s' "$rt" | sanitize)"
+  else
+    return 0
+  fi
+  push_title "$now"
+  unset title artist rt
+}
+
+# Redsea prints lines like:
+#   ps: KXXX-FM
+#   radiotext: Artist - Title
+#   radiotext: Some promo text
+# Some stations only send PS; most put Artist - Title in radiotext.
+while IFS= read -r line; do
+  if [[ "$line" =~ ^radiotext:\ (.*)$ ]]; then rt="${BASH_REMATCH[1]}"; emit; fi
+  if [[ "$line" =~ ^ps:\ (.*)$ ]]; then :; fi
+  # If you later parse structured RT+ tags, do it here
+done

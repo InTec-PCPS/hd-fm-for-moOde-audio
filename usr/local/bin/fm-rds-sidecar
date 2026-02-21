@@ -1,20 +1,9 @@
-# permissions: 644 root root
-# location: /etc/systemd/system
+#!/usr/bin/env bash
 
-[Unit]
-Description=FM Radio HTTP tuner (Flask on :8081)
-Wants=network-online.target
-After=network-online.target icecast2.service
-Requires=icecast2.service
+# permissions 644 root root
+# location: /usr/local/bin
 
-[Service]
-Type=simple
-Environment=PYTHONUNBUFFERED=1
-ExecStart=/usr/bin/env python3 /usr/local/bin/fmradio-tuner.py
-Restart=always
-RestartSec=2
-StandardOutput=journal
-StandardError=journal
-
-[Install]
-WantedBy=multi-user.target
+set -euo pipefail
+FREQ="${FREQ:-102.3}"
+rtl_fm -M fm -f "${FREQ}M" -s 171000 -l 0 -g 30 2>/dev/null \
+| redsea -e -r 171000

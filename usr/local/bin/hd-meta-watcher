@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # permissions: 755 root root
+# location: /usr/local/bin
 
 set -euo pipefail
 BASE="$1"; MOUNT="$2"; USER="$3"; PASS="$4"; LABEL="${5:-}"
@@ -18,7 +19,6 @@ push_title() {
   [[ "$now" == "$last" ]] && return 0
   [[ $((ts - last_ts)) -lt 2 ]] && return 0
 
-  # breadcrumbs
   echo "$(date '+%F %T') PUSH: ${now}" >> /var/log/hd-meta.log
   logger -t hd-meta "update: ${now}"
 
@@ -38,11 +38,7 @@ emit_if_ready() {
   a="$(printf '%s' "${artist:-}" | sanitize)"
   t="$(printf '%s' "${title:-}"  | sanitize)"
   if [[ -n "$a" && -n "$t" ]]; then
-#    if [[ -n "$LABEL" ]]; then
-#    now="${LABEL}: ${a} - ${t}"
-#    else
      now="${a} - ${t}"
-#    fi
      push_title "$now"
      unset artist title
   fi
@@ -71,4 +67,3 @@ while IFS= read -r line; do
   fi
 
   emit_if_ready
-done

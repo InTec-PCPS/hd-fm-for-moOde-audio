@@ -1,0 +1,24 @@
+# permissions: 644 root root
+
+[Unit]
+Conflicts=hdradio@active.service
+Description=Analog FM pipeline (%i)
+Wants=network-online.target
+After=network-online.target icecast2.service sound.target
+Requires=icecast2.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/default/fmradio
+# wait up to ~10s for the RTL-SDR to enumerate
+ExecStartPre=/bin/bash -c 'for i in {1..10}; do rtl_test -t >/dev/null 2>&1 && exit 0; sleep 1; done; exit 0'
+ExecStart=/usr/local/bin/fm-run
+KillSignal=SIGINT
+TimeoutStopSec=5
+Restart=always
+RestartSec=2
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

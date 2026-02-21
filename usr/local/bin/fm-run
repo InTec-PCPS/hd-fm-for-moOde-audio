@@ -8,7 +8,7 @@ set -euo pipefail
 FREQ="${FREQ:-102.3}"           # MHz
 ICE_HOST="127.0.0.1:8000"
 MOUNT="/fm.mp3"
-SRC_PASS="ndame1"
+SRC_PASS="########"
 
 # Optional: RDS to metadata (requires redsea). Comment out if not using.
 USE_RDS="${USE_RDS:-1}"

@@ -1,34 +1,19 @@
 # permissions: 644 root root
 
 [Unit]
-Description=HD Radio active pipeline
-After=network.target icecast2.service
+Description=HDRadio HTTP tuner (Flask on :8080)
+Wants=network-online.target
+After=network-online.target icecast2.service
 Requires=icecast2.service
 
 [Service]
 Type=simple
-EnvironmentFile=/etc/default/hdradio
-ExecStart=/usr/local/bin/hd-run
-
-KillSignal=SIGINT
-TimeoutStopSec=5
-Restart=always
-RestartSec=2
-
-StandardOutput=journal
-StandardError=journal
-
-[Install]
-WantedBy=multi-user.target
-waustin@moode1:/etc/systemd/system $ cat hdradio-tuner.service 
-[Unit]
-Description=HDRadio HTTP tuner
-After=network.target
-
-[Service]
+Environment=PYTHONUNBUFFERED=1
 ExecStart=/usr/bin/env python3 /usr/local/bin/hdradio-tuner.py
 Restart=always
-RestartSec=1
+RestartSec=2
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target

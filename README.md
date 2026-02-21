@@ -18,5 +18,3 @@ Note to self: remember to enable and start services...and to set icecast passwor
 nrsc5 build deps: git build-essential cmake autoconf libtool libao-dev libfftw3-dev librtlsdr-dev
 redsea build deps: git build-essential meson libsndfile1-dev libliquid-dev
 redsea runtime deps: libiconv libsndfile liquid-dsp nlohmann-json
-
-Also have nrsc5-dui-2.2.5, rx_tools, SoapySDR and SoapyRTLSDR. Probably just from playing around. Need to check if these are still required.

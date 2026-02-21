@@ -1,5 +1,7 @@
 Personal project only!
 
+![Project Logo](images/radio-hd.jpg "moOdeHD")
+
 # HD-Radio and FM Radio for moOde audio
 
 A Frankenstein's monster to add over-the-air US FM and multicast FM (HD) stations to moOde audio's Radio list using an RTL-SDR dongle.

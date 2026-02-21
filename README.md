@@ -13,16 +13,12 @@ Adding stations to moOdeaudio uses a URI that tunes the frequency and multicast 
 - http://127.0.0.1:8080/tune?freq=93.3&prog=0 (for HD. prog 0 is HD-1)
 - http://127.0.0.1:8081/fmtune?freq=102.3 (for FM.)
 
-Note to self: remember to enable and start services...and to set icecast passwords where needed.
+## Notes to Self
 
-Python needs flask (sudo apt install python3-flask).
+- Remember to enable and start services.
 
-Icecast2 needs to be installed (sudo apt install icecast2).
+- runtime and build dependencies: git build-essential cmake autoconf libtool libao-dev libfftw3-dev librtlsdr-dev meson libsndfile1-dev libliquid-dev python3-flask icecast2
 
-nrsc5 and redsea need to be compiled.
+- Remember to set icecast passwords where needed.
 
-nrsc5 build deps: git build-essential cmake autoconf libtool libao-dev libfftw3-dev librtlsdr-dev
-
-redsea build deps: git build-essential meson libsndfile1-dev libliquid-dev
-
-redsea runtime deps: libiconv libsndfile liquid-dsp nlohmann-json
+- nrsc5 and redsea need to be compiled (see respective github repos).

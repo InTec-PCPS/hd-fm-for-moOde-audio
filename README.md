@@ -19,11 +19,12 @@ Add stations to moOdeaudio with a URI that tunes the frequency and multicast cha
 - http://127.0.0.1:8080/tune?freq=93.3&prog=0 (for HD. prog 0 is HD-1)
 - http://127.0.0.1:8081/fmtune?freq=102.3 (for FM.)
 
-## Notes to Self
+## Notes to Self for moOde major releases
 
 - Remember to enable services (sudo systemctl enable ###.service) in /etc/systemd/system.
 - Runtime and build dependencies: git build-essential cmake autoconf libtool libao-dev libfftw3-dev librtlsdr-dev meson libsndfile1-dev libliquid-dev python3-flask icecast2.
 - Remember to set icecast passwords in /etc/icecast2/icecast.xml, /usr/local/bin/fm-run, and hd-run.
+- Icecast doesn't need configuration during install. The file here is all that's needed.
 - nrsc5 and redsea need to be compiled and installed (see respective github repos).
 - add user to plugdev and audio groups (sudo usermod -aG plugdev [username] and sudo usermod -aG audio [username]).
 - All files should have both their location and their permissions included (for bad memory reasons).

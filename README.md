@@ -22,5 +22,6 @@ Adding stations to moOdeaudio uses a URI that tunes the frequency and multicast 
 - Remember to enable services (sudo systemctl enable ###.service) in /etc/systemd/system.
 - Runtime and build dependencies: git build-essential cmake autoconf libtool libao-dev libfftw3-dev librtlsdr-dev meson libsndfile1-dev libliquid-dev python3-flask icecast2.
 - Remember to set icecast passwords in /etc/icecast2/icecast.xml, /usr/local/bin/fm-run, and hd-run.
-- nrsc5 and redsea need to be compiled (see respective github repos).
+- nrsc5 and redsea need to be compiled and installed (see respective github repos).
 - add user to plugdev and audio groups (sudo usermod -aG plugdev [username] and sudo usermod -aG audio [username]).
+- All files should have both their location and their permissions included (for bad memory reasons).

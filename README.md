@@ -15,7 +15,7 @@ Works with moOde 10.
 - The audio is re-encoded by **ffmpeg/libmp3lame** and sent along with any station/artist/song info to Icecast2.
 - **Icecast2** sets up a local stream that is interpreted by moOde audio as a webradio station.
 
-Adding stations to moOdeaudio uses a URI that tunes the frequency and multicast channel:
+Add stations to moOdeaudio with a URI that tunes the frequency and multicast channel:
 - http://127.0.0.1:8080/tune?freq=93.3&prog=0 (for HD. prog 0 is HD-1)
 - http://127.0.0.1:8081/fmtune?freq=102.3 (for FM.)
 

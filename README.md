@@ -8,6 +8,8 @@ A Frankenstein's monster to add over-the-air US FM and multicast FM (HD) station
 
 Works with moOde 10.
 
+![Sequence](images/sequence.png "audio and metadata sequence")
+
 - For HD-Radio, it uses nrsc5 by theori-io (https://github.com/theori-io/nrsc5) to decode signals from an RTL-SDR dongle attached to the Raspberry Pi. Artist/Title are scraped from the nrsc5 stderr and sent to Icecast2 as metadata.
 - For standard FM radio, it uses rtl-sdr tools with RDS info picked up by redsea by windytan (https://github.com/windytan/redsea).
 - The audio is re-encoded by ffmpeg/libmp3lame and sent along with any station/artist/song info to Icecast.

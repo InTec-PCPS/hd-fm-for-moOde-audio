@@ -1,8 +1,6 @@
 Personal project only!
 
-Anyone who stumbles upon this is welcome to take it, use it, make it better.
-
-No support, warranty, or any other crap is provided.
+Anyone who stumbles upon this is welcome to take it, use it, make it better. There's plenty of room for it.
 
 ![Project Logo](images/radio-hd.jpg "moOdeHD")
 

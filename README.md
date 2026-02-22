@@ -10,10 +10,10 @@ Works with moOde 10.
 
 ![Sequence](images/sequence.png "audio and metadata sequence")
 
-- For HD-Radio, it uses nrsc5 by theori-io (https://github.com/theori-io/nrsc5) to decode signals from an RTL-SDR dongle attached to the Raspberry Pi. Artist/Title are scraped from the nrsc5 stderr and sent to Icecast2 as metadata.
-- For standard FM radio, it uses rtl-sdr tools with RDS info picked up by redsea by windytan (https://github.com/windytan/redsea).
-- The audio is re-encoded by ffmpeg/libmp3lame and sent along with any station/artist/song info to Icecast.
-- Icecast sets up a local stream that is interpreted by moOde audio as a webradio station.
+- For HD-Radio, it uses **nrsc5** by theori-io (https://github.com/theori-io/nrsc5) to decode signals from an RTL-SDR dongle attached to the Raspberry Pi. Artist/Title are scraped from the nrsc5 stderr and sent to Icecast2 as metadata.
+- For standard FM radio, it uses **rtl-sdr** tools with RDS info picked up by **redsea** by windytan (https://github.com/windytan/redsea).
+- The audio is re-encoded by **ffmpeg/libmp3lame** and sent along with any station/artist/song info to Icecast2.
+- **Icecast2** sets up a local stream that is interpreted by moOde audio as a webradio station.
 
 Adding stations to moOdeaudio uses a URI that tunes the frequency and multicast channel:
 - http://127.0.0.1:8080/tune?freq=93.3&prog=0 (for HD. prog 0 is HD-1)

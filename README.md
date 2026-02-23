@@ -27,8 +27,8 @@ Works with moOde 10. Note that there's no way to scan stations and auto-add them
 
 - Remember to enable services in /etc/systemd/system: <pre>sudo systemctl enable ###.service</pre>
 - Runtime and build dependencies: git build-essential cmake autoconf libtool libao-dev libfftw3-dev librtlsdr-dev meson libsndfile1-dev libliquid-dev python3-flask icecast2.
-- Remember to set icecast passwords in /etc/icecast2/icecast.xml, /usr/local/bin/fm-run, and hd-run.
-- Icecast doesn't need configuration during install. The file here is all that's needed.
-- nrsc5 and redsea need to be compiled and installed (see respective github repos).
-- add user to plugdev and audio groups <pre>sudo usermod -aG plugdev [username]</pre> <pre>sudo usermod -aG audio [username]</pre>
-- All files should have both their location and their permissions included (for bad memory reasons).
+- Remember to set icecast passwords in /etc/icecast2/icecast.xml, /usr/local/bin/fm-run, and hd-run. Doesn't matter what they are as long as they match.
+- Icecast doesn't need configuration during install. The xml file here is all that's needed.
+- nrsc5 and redsea must be compiled and installed. Binaries aren't included here.
+- Add user to plugdev and audio groups <pre>sudo usermod -aG plugdev [username] && sudo usermod -aG audio [username]</pre>
+- Most files have both their location and their permissions included inside the file istelf (for bad memory reasons).

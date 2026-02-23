@@ -1,14 +1,14 @@
 Personal project only!
 
-Anyone who stumbles upon this is welcome to take it, use it, make it better. There's plenty of room for it.
+Anyone who stumbles upon this is welcome to take it, use it, make it better. There's plenty of room for that. For example, I started with HD and added FM later. I'm sure they could be combined.
 
 ![Project Logo](images/radio-hd.jpg "moOdeHD")
 
 # HD-Radio and FM Radio for moOde audio
 
-A Frankenstein's monster to add over-the-air US FM and multicast FM (HD) stations to moOde audio's Radio list using an RTL-SDR dongle. There's no scanning or auto-adding of stations to moOde.
+A Frankenstein's monster to add over-the-air US FM and multicast FM (HD) stations to moOde audio's Radio list using an RTL-SDR dongle.
 
-Works with moOde 10.
+Works with moOde 10. Note that there's no way to scan stations and auto-add them to the moOde radio library.
 
 ![Sequence](images/sequence.png "audio and metadata sequence")
 

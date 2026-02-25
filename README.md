@@ -25,6 +25,7 @@ Works with moOde 10. Note that there's no way to scan stations and auto-add them
 
 ## Notes to Self for moOde major releases
 
+- Added vibe-coded install script that handles everything but setting passwords for icecast (below).
 - Remember to enable services in /etc/systemd/system: <pre>sudo systemctl enable ###.service</pre>
 - Runtime and build dependencies: git build-essential cmake autoconf libtool libao-dev libfftw3-dev librtlsdr-dev meson libsndfile1-dev libliquid-dev python3-flask icecast2.
 - Remember to set icecast passwords in /etc/icecast2/icecast.xml, /usr/local/bin/fm-run, and hd-run. Doesn't matter what they are as long as they match.
@@ -32,3 +33,4 @@ Works with moOde 10. Note that there's no way to scan stations and auto-add them
 - nrsc5 and redsea must be compiled and installed. Binaries aren't included here.
 - Add user to plugdev and audio groups <pre>sudo usermod -aG plugdev [username] && sudo usermod -aG audio [username]</pre>
 - Most files have both their location and their permissions included inside the file istelf (for bad memory reasons).
+

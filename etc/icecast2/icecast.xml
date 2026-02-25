@@ -15,10 +15,10 @@
     </limits>
 
     <authentication>
-        <source-password>#####</source-password>
-        <relay-password>#####</relay-password>
+        <source-password>defaultpassword</source-password>
+        <relay-password>defaultpassword</relay-password>
         <admin-user>admin</admin-user>
-        <admin-password>#####</admin-password>
+        <admin-password>defaultpassword</admin-password>
     </authentication>
 
 

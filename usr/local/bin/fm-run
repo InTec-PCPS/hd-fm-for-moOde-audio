@@ -8,7 +8,7 @@ set -euo pipefail
 FREQ="${FREQ:-102.3}"
 ICE_HOST="127.0.0.1:8000"
 MOUNT="/fm.mp3"
-SRC_PASS="XXXXXXX"
+SRC_PASS="defaultpassword"
 
 USE_RDS="${USE_RDS:-1}"
 

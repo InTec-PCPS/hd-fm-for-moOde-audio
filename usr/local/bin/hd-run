@@ -10,9 +10,9 @@ PROG="${PROG:-0}"
 LABEL="HD$(( PROG + 1 ))"
 ICE_HOST="127.0.0.1:8000"
 MOUNT="/hd.mp3"
-SRC_PASS="XXXXXXX"
+SRC_PASS="defaultpassword"
 ADMIN_USER="admin"
-ADMIN_PASS="XXXXXXX"
+ADMIN_PASS="defaultpassword"
 
 META_FIFO="/run/nrsc5.meta"
 rm -f "$META_FIFO" || true
